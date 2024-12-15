@@ -22,14 +22,15 @@ app.set("views", path.resolve("./views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(express.static('public'));
 
 app.get("/", (req, res) => {
-  return res.render("home");
+  return res.render("Home");
 });
 
 // for students routing
 app.get("/student/signup", (req, res) => {
-  return res.render("sstudentignup");
+  return res.render("StudentSignup");
 });
 
 app.post("/student/signup", async (req, res) => {
@@ -48,23 +49,19 @@ app.post("/student/signup", async (req, res) => {
 });
 
 app.get("/student/login", (req, res) => {
-  return res.render("studentLogin");
+  return res.render("StudentLogin");
 });
 
 app.post("/student/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await student.findOne({ email });
   if (!user)
-    return res.render("login", { error: "Invalid username or password" });
+    return res.render("StudentLogin", { error: "Invalid username or password" });
 
   bcrypt.compare(password, user.password, (err, result) => {
     if (!result) res.send("incorrect");
-    res.render("studentlanding", { studentName: user.name });
+    res.render("StudentLanding", { studentName: user.name });
   });
-});
-
-app.get("/student/landing", (req, res) => {
-  res.render("studentlanding");
 });
 
 app.get("/student/logout", (req, res) => {
@@ -74,11 +71,11 @@ app.get("/student/logout", (req, res) => {
 
 // for hod routing
 app.get("/hod/signup", (req, res) => {
-  res.render("Hodsignup");
+  res.render("HodSignup");
 });
 
 app.get("/hod/login", (req, res) => {
-  res.render("Hodlogin");
+  res.render("HodLogin");
 });
 
 app.post("/hod/signup", async (req, res) => {
@@ -106,8 +103,8 @@ app.post("/hod/login", async (req, res) => {
     return res.render("login", { error: "Invalid username or password" });
 
   bcrypt.compare(password, user.password, (err, result) => {
-    if (!result) res.send("incorrect");
-    res.render("Hodlanding", { hodName: user.name });
+    if (!result) res.render("Hodlogin",{error: 'invalid password or email'});
+    res.render("HodLanding", { hodName: user.name });
   });
 });
 
@@ -117,12 +114,12 @@ app.get("/hod/logout", (req, res) => {
 });
 
 app.get("/hod/dashboard", (req, res) => {
-  res.render("Hoddashboard");
+  res.render("HodDashboard");
 });
 
 // for projects
 app.get("/student/Approval", (req, res) => {
-  res.render("studentApproval");
+  res.render("StudentApproval");
 });
 
 app.post("/student/Approval", async (req, res) => {
@@ -140,7 +137,7 @@ app.get("/hod/approval", async (req, res) => {
   const projects = await project.find({});
   let a = 0;
   console.log(projects);
-  return res.render("Hodapproval", { allProjects: projects, a });
+  return res.render("HodApproval", { allProjects: projects, a });
 });
 
 app.patch("/api/projects/:id/status", async (req, res) => {
@@ -176,9 +173,10 @@ app.patch("/api/projects/:id/status", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
 // for notification
 app.get("/student/notification", (req, res) => {
-  res.render("Studentnotification")
+  res.render("StudentNotification")
 })
 
 const port = process.env.PORT || 5544;
