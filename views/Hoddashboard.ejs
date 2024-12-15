@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOD Dashboard</title>
+    <link rel="stylesheet" href="/public/styles.css" />
+    <style>
+      /* General Body Styling */
+      body {
+        background: #f5f5f5;
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Navbar Styling */
+      .navbar {
+        background-color: #4caf50;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .navbar-nav {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        margin: 0;
+      }
+
+      .nav-item {
+        display: inline-block;
+      }
+
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 5px 10px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .nav-link:hover {
+        background-color: #388e3c;
+        border-radius: 5px;
+      }
+
+      /* Welcome Section */
+      .welcome-section {
+        background: linear-gradient(135deg, #4caf50, #2e8b57);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 50px;
+      }
+
+      .welcome-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .welcome-section p {
+        font-size: 1.2rem;
+      }
+
+      /* Dashboard Cards */
+      .dashboard-cards {
+        margin: -30px auto 0;
+        padding: 40px 20px;
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-title {
+        font-size: 1.5rem;
+        color: #4caf50;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      .card-text {
+        color: #555;
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        background-color: #388e3c;
+      }
+
+      /* Responsiveness */
+      @media (max-width: 768px) {
+        .welcome-section h1 {
+          font-size: 2rem;
+        }
+
+        .welcome-section p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">HOD Dashboard</a>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+      <h1>Welcome, HOD!</h1>
+      <p>Manage all student projects and reports from here.</p>
+    </section>
+
+    <!-- Dashboard Cards -->
+    <section class="dashboard-cards">
+      <div class="card">
+        <h5 class="card-title">3rd Year Mini Project</h5>
+        <p class="card-text">
+          View and manage all 3rd-year mini projects submitted by students.
+        </p>
+        <a href="/hod/approval" class="btn">View Mini Projects</a>
+      </div>
+      <div class="card">
+        <h5 class="card-title">4th Year Mega Project</h5>
+        <p class="card-text">
+          Review and monitor 4th-year mega projects submitted by students.
+        </p>
+        <a href="#" class="btn">View Mega Projects</a>
+      </div>
+      <div class="card">
+        <h5 class="card-title">Upload Synopsis</h5>
+        <p class="card-text">
+          Upload the synopsis for the 4th-year mega projects.
+        </p>
+        <a href="#" class="btn">Upload Synopsis</a>
+      </div>
+      <div class="card">
+        <h5 class="card-title">Mini Project Report</h5>
+        <p class="card-text">Upload the report for 3rd-year mini projects.</p>
+        <a href="#" class="btn">Upload Report</a>
+      </div>
+    </section>
+  </body>
+</html>
